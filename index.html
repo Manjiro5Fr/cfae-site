@@ -58,9 +58,6 @@
     body.dark-theme .logo-img {
       padding: 6px;
       background: transparent;
-      outline: 2px solid #ffd632;
-      outline-offset: 4px;
-      border-radius: 18px;
     }
 
     * {
@@ -599,7 +596,7 @@
   <header>
     <div class="container navbar">
       <div class="logo">
-        <img src="images/logo CFAE.svg" alt="Logo du CFAE" class="logo-img">
+        <img src="images/logo CFAE.svg" alt="Logo du CFAE" class="logo-img" id="logo">
       
         <span class="logo-text">
           COMITÉ DES FÊTES ET<br>
@@ -825,14 +822,17 @@
 
   <script>
     const toggle = document.getElementById('themeToggle');
-
+    const logo = document.getElementById('logo');
+    
     toggle.addEventListener('click', () => {
       document.body.classList.toggle('dark-theme');
-
+    
       if (document.body.classList.contains('dark-theme')) {
         toggle.textContent = '🌙';
+        logo.src = 'images/logo CFAE dark.svg';
       } else {
         toggle.textContent = '☀️';
+        logo.src = 'images/logo CFAE.svg';
       }
     });
   </script>
