@@ -32,14 +32,11 @@
       --shadow: 0 10px 30px rgba(0,0,0,0.25);
     }
     
-    body.dark-theme .btn-primary {
-      background: var(--accent); /* jaune */
-      color: var(--primary-dark); /* vert foncé */
-    }
-    
-    body.dark-theme .btn-secondary {
-      background: var(--accent);
-      color: var(--primary-dark);
+    body.dark-theme .btn-primary,
+    body.dark-theme .btn-secondary,
+    body.dark-theme .small-btn {
+      background: #9de46b;
+      color: #143126;
     }
     
     body.dark-theme .logo-text {
@@ -271,19 +268,16 @@
       font-weight: 700;
       transition: 0.25s ease;
     }
-
-    .btn-primary {
-      background: var(--primary);
-      color: var(--accent);
+    
+    .btn-primary,
+    .small-btn {
+      background: #143126;
+      color: #9de46b;
     }
-
-    .btn-primary:hover {
-      transform: translateY(-3px);
-    }
-
+    
     .btn-secondary {
-      background: var(--yellow);
-      color: var(--primary);
+      background: #143126;
+      color: #9de46b;
     }
 
     section {
@@ -294,21 +288,29 @@
       padding-top: 0.5rem;
     }
 
-    .section-header {
-      margin-bottom: 3rem;
-      text-align: center;
+    .section-header h2 {
+      font-family: 'Truculenta', sans-serif;
+      font-size: 2.2rem;
+      font-weight: 800;
+      position: relative;
+      display: inline-block;
+      padding-left: 16px;
+      margin-bottom: 1rem;
     }
 
-    .section-header h2 {
-      border-left: 6px solid var(--yellow);
-      padding-left: 12px;
+    .section-header h2::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 10%;
+      width: 6px;
+      height: 80%;
+      background: #ffd632;
+      border-radius: 3px;
     }
 
     .section-header p {
-      font-family: 'Montserrat', sans-serif;
-      color: var(--muted);
-      max-width: 700px;
-      margin: auto;
+      display: none;
     }
 
     .events-grid {
@@ -602,7 +604,7 @@
   <header>
     <div class="container navbar">
       <div class="logo">
-        <img src="images/logo CFAE.svg" alt="Logo du CFAE" class="logo-img" id="logo">
+        <img src="images/logo CFAE dark.svg" alt="Logo du CFAE" class="logo-img" id="logo">
       
         <span class="logo-text">
           COMITÉ DES FÊTES ET<br>
