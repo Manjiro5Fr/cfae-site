@@ -28,6 +28,16 @@
       --muted: #b8c4be;
     }
     
+    body.dark-theme .btn-primary {
+      background: var(--primary);
+      color: var(--yellow);
+    }
+    
+    body.dark-theme .btn-secondary {
+      background: var(--yellow);
+      color: var(--primary-dark);
+    }
+    
     body.dark-theme .logo-text {
       color: var(--accent);
     }
@@ -43,6 +53,12 @@
 
     body.dark-theme nav a:hover {
       color: white;
+    }
+    
+    body.dark-theme .logo-img {
+      border: 3px solid var(--accent);
+      border-radius: 18px;
+      padding: 4px;
     }
 
     * {
@@ -302,6 +318,8 @@
       overflow: hidden;
       box-shadow: var(--shadow);
       transition: 0.25s ease;
+      border-radius: 28px;
+      overflow: hidden;
     }
     
     .event-card:hover,
