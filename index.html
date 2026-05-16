@@ -61,7 +61,13 @@
         drop-shadow(0 0 0 2px #ffd632)
         brightness(1.05);
     }
-
+    
+    body.dark-theme .event-date {
+      background: #143126;
+      color: #ffd632;
+      border: 2px solid #ffd632;
+    }
+    
     * {
       margin: 0;
       padding: 0;
@@ -347,8 +353,8 @@
     
     .event-date {
       display: inline-block;
-      background: #143126;
-      color: #ffd632;
+      background: #ffd632;
+      color: #143126;
       font-weight: 800;
       padding: 0.35rem 0.8rem;
       border-radius: 999px;
