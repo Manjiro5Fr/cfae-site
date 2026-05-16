@@ -17,6 +17,9 @@
       --accent: #9de46bff;
       --text: #222;
       --muted: #666;
+      --yellow: #ffd632;
+      --radius: 28px;
+      --shadow: 0 10px 30px rgba(0,0,0,0.08);
     }
 
     body.dark-theme {
@@ -26,15 +29,16 @@
       --accent: #ffd632;
       --text: #f4f4f4;
       --muted: #b8c4be;
+      --shadow: 0 10px 30px rgba(0,0,0,0.25);
     }
     
     body.dark-theme .btn-primary {
-      background: var(--primary);
-      color: var(--yellow);
+      background: var(--accent); /* jaune */
+      color: var(--primary-dark); /* vert foncé */
     }
     
     body.dark-theme .btn-secondary {
-      background: var(--yellow);
+      background: var(--accent);
       color: var(--primary-dark);
     }
     
@@ -56,11 +60,9 @@
     }
     
     body.dark-theme .logo-img {
-      width: 100px;
-      height: 100px;
-      object-fit: contain;
-      padding: 6px;
-      background: transparent;
+      filter:
+        drop-shadow(0 0 0 2px #ffd632)
+        brightness(1.05);
     }
 
     * {
@@ -85,11 +87,12 @@
       max-width: 100%;
       display: block;
     }
+    
     .logo-img {
       width: 80px;
       height: 80px;
       object-fit: contain;
-      background: transparent;
+      flex-shrink: 0;
     }
 
     a {
