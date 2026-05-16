@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CFAE — Comité des fêtes et d’animation d’Égly</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Truculenta:wght@600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #f2ebcaff;
+      --card: #ffffff;
+      --primary: #143126ff;
+      --primary-dark: #0d221a;
+      --accent: #9de46bff;
+      --text: #222;
+      --muted: #666;
+    }
+
+    body.dark-theme {
+      --bg: #111f1a;
+      --card: #183026;
+      --primary: #9de46bff;
+      --primary-dark: #7bc94b;
+      --accent: #143126ff;
+      --text: #f4f4f4;
+      --muted: #b8c4be;
+      --shadow: 0 10px 30px rgba(0,0,0,0.08);
+      --radius: 24px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .container {
+      width: min(1200px, 92%);
+      margin: auto;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(20,49,38,0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(0,0,0,0.06);
+    }
+
+    .navbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 0;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      font-weight: 800;
+      font-size: 1.1rem;
+      font-family: 'Truculenta', sans-serif;
+      color: white;
+    }
+
+    .logo-badge {
+      width: 52px;
+      height: 52px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, var(--accent), #7bc94b);
+      color: white;
+      display: grid;
+      place-items: center;
+      font-weight: 800;
+      box-shadow: var(--shadow);
+    }
+
+    nav {
+      display: flex;
+      gap: 2rem;
+      color: rgba(255,255,255,0.82);
+      font-weight: 600;
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    nav a:hover {
+      color: var(--accent);
+    }
+
+    .theme-toggle {
+      width: 52px;
+      height: 52px;
+      border: none;
+      border-radius: 18px;
+      background: var(--accent);
+      color: var(--primary);
+      font-size: 1.2rem;
+      cursor: pointer;
+      transition: 0.25s ease;
+      box-shadow: var(--shadow);
+    }
+
+    .theme-toggle:hover {
+      transform: translateY(-2px) scale(1.03);
+    }
+
+    .hero {
+      min-height: 92vh;
+      display: grid;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      isolation: isolate;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(
+          to bottom,
+          rgba(20,49,38,0.45) 0%,
+          rgba(20,49,38,0.55) 45%,
+          rgba(242,235,202,0.98) 100%
+        ),
+        url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=1800&auto=format&fit=crop') center/cover;
+      z-index: -2;
+      transform: scale(1.05);
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 80px;
+      background: linear-gradient(
+        to bottom,
+        rgba(20,49,38,0) 0%,
+        var(--bg) 100%
+      );
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    .hero-content {
+      max-width: 700px;
+      color: white;
+      padding: 6rem 0 1rem;
+    }
+
+    .hero-tag {
+      display: inline-block;
+      background: rgba(255,255,255,0.16);
+      border: 1px solid rgba(255,255,255,0.2);
+      backdrop-filter: blur(8px);
+      padding: 0.6rem 1rem;
+      border-radius: 999px;
+      margin-bottom: 1.5rem;
+      font-size: 0.95rem;
+    }
+
+    .hero h1 {
+      font-family: 'Truculenta', sans-serif;
+      font-size: clamp(2.8rem, 7vw, 5rem);
+      line-height: 1;
+      margin-bottom: 1.5rem;
+      font-weight: 800;
+    }
+
+    .hero p {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.15rem;
+      color: rgba(255,255,255,0.9);
+      margin-bottom: 2rem;
+    }
+
+    .hero-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .btn {
+      font-family: 'Montserrat', sans-serif;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem 1.5rem;
+      border-radius: 999px;
+      font-weight: 700;
+      transition: 0.25s ease;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: var(--accent);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-3px);
+    }
+
+    .btn-secondary {
+      background: rgba(20,49,38,0.55);
+      border: 1px solid rgba(255,255,255,0.2);
+      color: white;
+      backdrop-filter: blur(6px);
+    }
+
+    section {
+      padding: 5rem 0;
+    }
+
+    #events {
+      padding-top: 0.5rem;
+    }
+
+    .section-header {
+      margin-bottom: 3rem;
+      text-align: center;
+    }
+
+    .section-header h2 {
+      font-family: 'Truculenta', sans-serif;
+      font-size: clamp(2rem, 5vw, 3rem);
+      margin-bottom: 1rem;
+    }
+
+    .section-header p {
+      font-family: 'Montserrat', sans-serif;
+      color: var(--muted);
+      max-width: 700px;
+      margin: auto;
+    }
+
+    .events-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+
+    .event-card {
+      background: var(--card);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: 0.25s ease;
+    }
+
+    .event-card:hover {
+      transform: translateY(-6px);
+    }
+
+    .event-card img {
+      height: 220px;
+      width: 100%;
+      object-fit: cover;
+    }
+
+    .event-content {
+      padding: 1.5rem;
+    }
+
+    .event-date {
+      color: var(--primary);
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .event-content h3 {
+      font-family: 'Truculenta', sans-serif;
+      margin-bottom: 0.8rem;
+      font-size: 1.3rem;
+    }
+
+    .event-content p {
+      font-family: 'Montserrat', sans-serif;
+      color: var(--muted);
+      margin-bottom: 1.5rem;
+    }
+
+    .small-btn {
+      font-family: 'Montserrat', sans-serif;
+      display: inline-block;
+      background: var(--primary);
+      color: var(--accent);
+      padding: 0.8rem 1rem;
+      border-radius: 999px;
+      font-weight: 700;
+    }
+
+    .about {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .about-image img {
+      border-radius: 32px;
+      box-shadow: var(--shadow);
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .about-content h2 {
+      font-family: 'Truculenta', sans-serif;
+      font-size: clamp(2rem, 5vw, 3rem);
+      margin-bottom: 1.5rem;
+    }
+
+    .about-content p {
+      font-family: 'Montserrat', sans-serif;
+      margin-bottom: 1.2rem;
+      color: var(--muted);
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+
+    .stat {
+      background: var(--card);
+      padding: 1.5rem;
+      border-radius: 20px;
+      box-shadow: var(--shadow);
+      text-align: center;
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 2rem;
+      color: var(--primary);
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1rem;
+    }
+
+    .gallery-grid img {
+      border-radius: 24px;
+      height: 260px;
+      object-fit: cover;
+      box-shadow: var(--shadow);
+      transition: 0.25s ease;
+    }
+
+    .gallery-grid img:hover {
+      transform: scale(1.02);
+    }
+
+    .news-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+
+    .news-card {
+      background: var(--card);
+      border-radius: 28px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: 0.25s ease;
+    }
+
+    .news-card:hover {
+      transform: translateY(-6px);
+    }
+
+    .news-card img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+    }
+
+    .news-content {
+      padding: 1.6rem;
+    }
+
+    .news-content h3 {
+      font-family: 'Truculenta', sans-serif;
+      margin-bottom: 0.8rem;
+      font-size: 1.5rem;
+    }
+
+    .news-content p {
+      color: var(--muted);
+      margin-bottom: 1.4rem;
+    }
+
+    .contact-box {
+      background: linear-gradient(135deg, var(--accent), #7bc94b);
+      color: white;
+      border-radius: 36px;
+      padding: 4rem;
+      text-align: center;
+      box-shadow: var(--shadow);
+    }
+
+    .contact-box h2 {
+      font-family: 'Truculenta', sans-serif;
+      font-size: clamp(2rem, 5vw, 3rem);
+      margin-bottom: 1rem;
+    }
+
+    .contact-box p {
+      font-family: 'Montserrat', sans-serif;
+      color: rgba(255,255,255,0.88);
+      max-width: 700px;
+      margin: auto auto 2rem;
+    }
+
+    footer {
+      font-family: 'Montserrat', sans-serif;
+      padding: 4rem 0;
+      background: #143126ff;
+      color: white;
+    }
+
+    .footer-content {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 3rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid rgba(255,255,255,0.12);
+    }
+
+    .footer-bottom {
+      text-align: center;
+      padding-top: 2rem;
+      color: rgba(255,255,255,0.65);
+      font-size: 0.95rem;
+    }
+
+    .footer-left h3,
+    .footer-right h3 {
+      font-family: 'Truculenta', sans-serif;
+      margin-bottom: 1rem;
+      color: var(--accent);
+      font-size: 1.5rem;
+    }
+
+    .partner-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 92px;
+      height: 92px;
+      border-radius: 24px;
+      border: 2px dashed rgba(157,228,107,0.5);
+      background: rgba(255,255,255,0.03);
+      transition: 0.2s ease;
+    }
+
+    .partner-link:hover {
+      transform: translateY(-2px);
+      border-color: var(--accent);
+      background: rgba(255,255,255,0.06);
+    }
+
+    .partner-link img {
+      width: 72px;
+      height: 72px;
+      object-fit: contain;
+      opacity: 0.9;
+    }
+
+    .social-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 0.4rem;
+      color: white;
+      transition: 0.2s ease;
+    }
+
+    .social-link:hover {
+      color: var(--accent);
+    }
+
+    .facebook-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 14px;
+      background: var(--accent);
+      color: #143126ff;
+      display: grid;
+      place-items: center;
+      font-weight: 800;
+      font-size: 1.3rem;
+    }
+
+    @media (max-width: 850px) {
+      nav {
+        display: none;
+      }
+
+      .hero {
+        min-height: 75vh;
+      }
+
+      .stats {
+        grid-template-columns: 1fr;
+      }
+
+      .contact-box {
+        padding: 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="container navbar">
+      <div class="logo">
+        <div class="logo-badge">CFAE</div>
+        <span>Comité des fêtes d’Égly</span>
+      </div>
+
+      <nav>
+        <a href="#events">Événements</a>
+        <a href="#about">Association</a>
+        <a href="#gallery">Galerie</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+      <button class="theme-toggle" id="themeToggle">☀️</button>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="container hero-content">
+      
+
+      <h1>Faire vivre Égly toute l’année</h1>
+
+      
+
+      <div class="hero-buttons">
+        <a href="#events" class="btn btn-primary">Voir les événements</a>
+        <a href="#contact" class="btn btn-secondary">Nous rejoindre</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="events">
+    <div class="container">
+      <div class="section-header">
+        <h2>Les prochains événements</h2>
+        <p>
+          Marchés, fêtes, brocantes, animations et rendez-vous locaux organisés par le CFAE.
+        </p>
+      </div>
+
+      <div class="events-grid">
+
+        <article class="event-card">
+          <img src="https://images.unsplash.com/photo-1511578314322-379afb476865?q=80&w=1200&auto=format&fit=crop" alt="Marché de Noël">
+          <div class="event-content">
+            <div class="event-date">14 décembre 2026</div>
+            <h3>Marché de Noël</h3>
+            <p>
+              Artisans, illuminations, gourmandises et animations hivernales au centre-ville.
+            </p>
+            <a href="#" class="small-btn">En savoir plus</a>
+          </div>
+        </article>
+
+        <article class="event-card">
+          <img src="https://images.unsplash.com/photo-1506157786151-b8491531f063?q=80&w=1200&auto=format&fit=crop" alt="Concert été">
+          <div class="event-content">
+            <div class="event-date">21 juin 2026</div>
+            <h3>Fête de la musique</h3>
+            <p>
+              Concerts en plein air, groupes locaux et ambiance festive pour tous.
+            </p>
+            <a href="#" class="small-btn">En savoir plus</a>
+          </div>
+        </article>
+
+        <article class="event-card">
+          <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?q=80&w=1200&auto=format&fit=crop" alt="Brocante">
+          <div class="event-content">
+            <div class="event-date">5 septembre 2026</div>
+            <h3>Brocante d’Égly</h3>
+            <p>
+              Une grande journée conviviale avec exposants, restauration et animations.
+            </p>
+            <a href="#" class="small-btn">En savoir plus</a>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="container about">
+
+      <div class="about-image">
+        <img src="https://images.unsplash.com/photo-1517457373958-b7bdd4587205?q=80&w=1200&auto=format&fit=crop" alt="Bénévoles">
+      </div>
+
+      <div class="about-content">
+        <h2>Une association au cœur de la commune</h2>
+
+        <p>
+          Créé en 1972, le Comité des fêtes et d’animation d’Égly participe à la vie locale en organisant des événements festifs, culturels et familiaux.
+        </p>
+
+        <p>
+          Le CFAE fonctionne grâce à l’engagement de bénévoles passionnés qui souhaitent créer du lien entre les habitants et faire vivre la commune.
+        </p>
+
+        <div class="stats">
+          <div class="stat">
+            <strong>1972</strong>
+            Fondation
+          </div>
+
+          <div class="stat">
+            <strong>+20</strong>
+            Bénévoles
+          </div>
+
+          <div class="stat">
+            <strong>Toute l’année</strong>
+            Animations
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section id="gallery">
+    <div class="container">
+      <div class="section-header">
+        <h2>Galerie photo</h2>
+        <p>
+          Quelques moments des événements et animations organisés à Égly.
+        </p>
+      </div>
+
+      <div class="gallery-grid">
+        <img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?q=80&w=1200&auto=format&fit=crop" alt="Concert">
+        <img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?q=80&w=1200&auto=format&fit=crop" alt="Animation">
+        <img src="https://images.unsplash.com/photo-1469371670807-013ccf25f16a?q=80&w=1200&auto=format&fit=crop" alt="Festival">
+        <img src="https://images.unsplash.com/photo-1521334884684-d80222895322?q=80&w=1200&auto=format&fit=crop" alt="Village">
+      </div>
+    </div>
+  </section>
+
+  <section id="news">
+    <div class="container">
+      <div class="section-header">
+        <h2>Actualités</h2>
+        <p>
+          Les dernières nouvelles et annonces du Comité des fêtes d’Égly.
+        </p>
+      </div>
+
+      <div class="news-grid">
+
+        <article class="news-card">
+          <img src="https://images.unsplash.com/photo-1515169067868-5387ec356754?q=80&w=1200&auto=format&fit=crop" alt="Préparatifs">
+          <div class="news-content">
+            <h3>Préparation du marché de Noël</h3>
+            <p>
+              Les bénévoles préparent actuellement les décorations et animations pour les festivités de décembre.
+            </p>
+            <a href="#" class="small-btn">Lire l’article</a>
+          </div>
+        </article>
+
+        <article class="news-card">
+          <img src="https://images.unsplash.com/photo-1523580494863-6f3031224c94?q=80&w=1200&auto=format&fit=crop" alt="Réunion">
+          <div class="news-content">
+            <h3>Appel aux bénévoles</h3>
+            <p>
+              Le CFAE recherche de nouveaux bénévoles pour participer à l’organisation des événements de l’année.
+            </p>
+            <a href="#" class="small-btn">En savoir plus</a>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="container">
+      <div class="contact-box">
+        <h2>Envie de participer ?</h2>
+
+        <p>
+          Rejoignez le comité, devenez bénévole ou contactez-nous pour toute question concernant les événements à Égly.
+        </p>
+
+        <a href="mailto:contact@cfae-egly.fr" class="btn btn-primary">
+          Contacter l’association
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container footer-content">
+
+      <div class="footer-left">
+        <h3>Nos partenaires</h3>
+
+        <a class="partner-link" href="#" aria-label="Logo partenaire">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Blason_ville_fr_%C3%89gly_%28Essonne%29.svg/512px-Blason_ville_fr_%C3%89gly_%28Essonne%29.svg.png" alt="Logo partenaire">
+        </a>
+      </div>
+
+      <div class="footer-right">
+        <h3>Suivez-nous</h3>
+
+        <a class="social-link" href="https://www.facebook.com/CFAEgly" target="_blank" aria-label="Facebook CFAE">
+          <div class="facebook-icon">f</div>
+        </a>
+      </div>
+
+    </div>
+
+    <div class="container footer-bottom">
+      © 2026 — CFAE · Comité des fêtes et d’animation d’Égly
+    </div>
+  </footer>
+
+  <script>
+    const toggle = document.getElementById('themeToggle');
+
+    toggle.addEventListener('click', () => {
+      document.body.classList.toggle('dark-theme');
+
+      if (document.body.classList.contains('dark-theme')) {
+        toggle.textContent = '🌙';
+      } else {
+        toggle.textContent = '☀️';
+      }
+    });
+  </script>
+
+</body>
+</html>
+
