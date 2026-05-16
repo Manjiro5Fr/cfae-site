@@ -20,15 +20,25 @@
     }
 
     body.dark-theme {
-      --bg: #111f1a;
+      --bg: #0f1f18;
       --card: #183026;
-      --primary: #9de46bff;
-      --primary-dark: #7bc94b;
-      --accent: #143126ff;
+      --primary: #9de46b;
+      --accent: #ffd632;
       --text: #f4f4f4;
       --muted: #b8c4be;
-      --shadow: 0 10px 30px rgba(0,0,0,0.08);
-      --radius: 24px;
+    }
+
+    body.dark-theme header {
+      background: rgba(20, 49, 38, 0.95);
+      border-bottom: 2px solid var(--accent);
+    }
+
+    body.dark-theme nav a {
+      color: var(--accent);
+    }
+
+    body.dark-theme nav a:hover {
+      color: white;
     }
 
     * {
@@ -70,12 +80,6 @@
       margin: auto;
     }
 
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-    }
-
     .logo-text {
       display: flex;
       flex-direction: column;
@@ -83,15 +87,18 @@
       font-weight: 800;
       font-size: 1.5rem;
       letter-spacing: 0.5px;
-      color: #143126;
+    }
+    .logo,
+    nav a {
+      color: var(--primary);
     }
     header {
       position: sticky;
       top: 0;
       z-index: 1000;
-      background: rgba(255,214,50,0.95);
+      background: rgba(255, 214, 50, 0.95); /* jaune */
       backdrop-filter: blur(10px);
-      border-bottom: 1px solid rgba(0,0,0,0.06);
+      border-bottom: 2px solid var(--primary);
     }
 
     .navbar {
@@ -130,7 +137,7 @@
     }
 
     nav a:hover {
-      color: var(--accent);
+      color: #7bc94b;
     }
 
     .theme-toggle {
@@ -250,10 +257,8 @@
     }
 
     .btn-secondary {
-      background: rgba(20,49,38,0.55);
-      border: 1px solid rgba(255,255,255,0.2);
-      color: white;
-      backdrop-filter: blur(6px);
+      background: var(--yellow);
+      color: var(--primary);
     }
 
     section {
@@ -270,9 +275,8 @@
     }
 
     .section-header h2 {
-      font-family: 'Truculenta', sans-serif;
-      font-size: clamp(2rem, 5vw, 3rem);
-      margin-bottom: 1rem;
+      border-left: 6px solid var(--yellow);
+      padding-left: 12px;
     }
 
     .section-header p {
@@ -295,9 +299,11 @@
       box-shadow: var(--shadow);
       transition: 0.25s ease;
     }
-
-    .event-card:hover {
+    
+    .event-card:hover,
+    .news-card:hover {
       transform: translateY(-6px);
+      box-shadow: 0 12px 35px rgba(255, 214, 50, 0.15);
     }
 
     .event-card img {
@@ -309,11 +315,10 @@
     .event-content {
       padding: 1.5rem;
     }
-
+    
     .event-date {
-      color: var(--primary);
-      font-weight: 700;
-      margin-bottom: 0.5rem;
+      color: var(--yellow);
+      font-weight: 800;
     }
 
     .event-content h3 {
